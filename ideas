@@ -1,0 +1,8 @@
+Package enters factory
+if(package signed by websages team member)
+  resign with websages master key
+else
+  log an error and reject package
+end
+
+rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}|%{DSAHEADER:pgpsig}\n' -a
