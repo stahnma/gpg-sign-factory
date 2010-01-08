@@ -32,14 +32,18 @@ def get_packages_available
    end
 end
 
+# Package has been signed by a known key
+# Package signed by unknown key
 def check_package(pkg)
-   ` rpm -qp --qf '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}|%{DSAHEADER:pgpsig}\n' #{pkg}`
+   a = `rpm -K #{pkg}`
+   puts a.split('#')[-1].gsub!(')', "")
 end
 
 def good_sign
 end
 
 def throw_away(pkg)
+   puts "Throw away #{pkg}"
 end
 
 get_packages_available
